@@ -53,7 +53,12 @@ export default {
 
 <style>
 body {
-  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+
   background-repeat: no-repeat;
 }
 
@@ -62,7 +67,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Dongle", sans-serif;
 }
 
 .container {
@@ -71,14 +76,11 @@ body {
   height: 100vh;
   margin: 0 auto;
   align-items: center;
-  justify-content: center;
-  /* flex-wrap: wrap; */
+  justify-content: space-around;
 }
 
 @media screen and (max-width: 600px) {
   .container {
-    display: flex;
-    margin: 0 auto;
     align-items: flex-start;
     flex-wrap: wrap;
   }
@@ -86,6 +88,10 @@ body {
   .beer_info {
     display: flex;
     flex-direction: column;
+  }
+
+  .beer {
+    flex-grow: 1;
   }
 
   .beer_header {
@@ -98,7 +104,15 @@ body {
     font-weight: bold;
   }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 320px) {
+  .container {
+    align-items: center;
+  }
+
+  .beer {
+    flex-grow: 1;
+  }
+
   p {
     margin: 5px;
   }
