@@ -79,10 +79,15 @@ body {
   justify-content: space-around;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 600px) and (min-width: 321px) {
   .container {
-    align-items: flex-start;
+    display: flex;
+    width: 80vw;
+    height: 100vh;
+    margin: 0 auto;
+    align-items: center;
     flex-wrap: wrap;
+    justify-content: start;
   }
 
   .beer_info {
