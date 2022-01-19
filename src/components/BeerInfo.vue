@@ -31,6 +31,7 @@ export default {
 .beer {
   display: flex;
   flex-direction: column;
+  flex-basis: 70%;
 }
 
 .beer_header {
@@ -42,6 +43,7 @@ export default {
 .beer_info {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .beer_info_content p {
