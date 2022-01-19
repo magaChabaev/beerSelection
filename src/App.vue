@@ -53,6 +53,7 @@ export default {
 
 <style>
 body {
+  margin: 0px;
   background: radial-gradient(
     circle,
     rgba(238, 174, 202, 1) 0%,
@@ -61,7 +62,6 @@ body {
 
   background-repeat: no-repeat;
 }
-
 #app {
   height: 100vh;
   display: flex;
@@ -109,7 +109,7 @@ body {
     font-weight: bold;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 319px) {
   .container {
     align-items: center;
   }
