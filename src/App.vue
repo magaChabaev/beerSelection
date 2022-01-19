@@ -1,28 +1,106 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div v-if="dataReady" class="container">
+    <UserInfo
+      :address="userInfo.address"
+      :firstName="userInfo.first_name"
+      :lastName="userInfo.last_name"
+      :avatar="userInfo.avatar"
+      :email="userInfo.email"
+      :phone="userInfo.phone_number"
+    />
+    <BeerInfo :beerInfo="beerInfo" @onButtonClick="fetchAnotherBeer" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserInfo from "./components/UserInfo.vue";
+import BeerInfo from "./components/BeerInfo.vue";
+
+import { fetchUserData, fetchBeerData } from "./api/fetchApi";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    UserInfo,
+    BeerInfo,
+  },
+  data() {
+    return {
+      userInfo: null,
+      beerInfo: null,
+      dataReady: false,
+    };
+  },
+  methods: {
+    async fetchAnotherBeer() {
+      this.beerInfo = await fetchBeerData();
+      console.log(123);
+      for (let item in this.beerInfo) {
+        if (item.includes("id")) delete this.beerInfo[item];
+      }
+    },
+  },
+  async mounted() {
+    this.beerInfo = await fetchBeerData();
+    this.userInfo = await fetchUserData();
+    for (let item in this.beerInfo) {
+      if (item.includes("id")) delete this.beerInfo[item];
+    }
+    this.dataReady = true;
+  },
+};
 </script>
 
 <style>
+body {
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+  background-repeat: no-repeat;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 80vw;
+  height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  /* flex-wrap: wrap; */
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    display: flex;
+    margin: 0 auto;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .beer_info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .beer_header {
+    margin-bottom: 0px;
+  }
+
+  .info_header {
+    font-size: 2rem;
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+}
+@media screen and (max-width: 600px) {
+  p {
+    margin: 5px;
+  }
 }
 </style>
