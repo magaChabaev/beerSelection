@@ -109,9 +109,9 @@ body {
     font-weight: bold;
   }
 }
-@media screen and (max-width: 319px) {
+@media screen and (max-width: 320px) {
   .container {
-    align-items: center;
+    flex-direction: column;
   }
 
   .beer {
