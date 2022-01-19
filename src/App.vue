@@ -105,7 +105,7 @@ body {
 
   .info_header {
     font-size: 2rem;
-    margin-bottom: 0px;
+    margin: 0px;
     font-weight: bold;
   }
 }
